@@ -12,10 +12,13 @@ export default class TestScene extends UIScene {
       onPressed: 'hello button',
     }).display();
 
-    this.textButton = new TextButton('textButton', { onPressed: 'hello textButton' })
+    this.textButton = new TextButton('textButton', {
+      text: new Text('textButton', { text: 'text button' }),
+      onPressed: () => 'hello textButton',
+    })
       .display();
 
-    this.text = new Text('text', { text: 'hello text', position: { x: 130, y: 130 } })
+    this.text = new Text('text', { text: 'Text::hello', position: { x: 130, y: 130 } })
       .display();
     return this;
   }

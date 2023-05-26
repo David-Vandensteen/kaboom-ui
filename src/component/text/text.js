@@ -6,6 +6,7 @@ export default class Text extends UIObject {
     const [, options] = parameters;
     const { text } = options;
     this.text = text;
+    console.log('Text::parameters', parameters);
     console.log('Text::text', text);
   }
 
