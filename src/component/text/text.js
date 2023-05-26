@@ -1,10 +1,18 @@
 import { UIObject } from '#src/component/uiObject';
 
 export default class Text extends UIObject {
-  constructor(...options) {
-    const [keyName, text] = options;
-    super(keyName);
-    console.log('text', text);
+  constructor(...parameters) {
+    super(...parameters);
+    const [, text] = parameters;
+    this.text = text;
+    console.log('Text::text', text);
+  }
+
+  add() {
+    this.kaboom.add([
+      this.kaboom.text(this.text),
+    ]);
+    return this;
   }
 }
 

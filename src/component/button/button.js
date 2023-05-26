@@ -3,10 +3,11 @@ import { buttonSprite } from '#src/config';
 
 export default class Button extends UIObject {
   constructor(...parameters) {
-    const [keyName, options] = parameters;
-    super(keyName);
+    super(...parameters);
+    console.log('Button::parameters', parameters);
+    const [, options] = parameters;
+    console.log('Button::position', this.position);
     const { onPressed } = options;
-    console.log('onPressed', onPressed);
   }
 
   load() {
@@ -18,11 +19,14 @@ export default class Button extends UIObject {
     // TODO
   }
 
-  add(x, y) {
+  add() {
+    console.log('Button::position', this.position);
+    console.log('Button::position.x', this.position.x);
     this.kaboom.add([
-      this.kaboom.pos(x, y),
+      this.kaboom.pos(this.position?.x || 0, this.position?.y || 0),
       this.kaboom.sprite(this.keyName),
     ]);
+    return this;
   }
 }
 
