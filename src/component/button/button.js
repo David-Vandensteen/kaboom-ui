@@ -5,8 +5,8 @@ export default class Button extends UIObject {
   constructor(...parameters) {
     super(...parameters);
     console.log('Button::parameters', parameters);
-    const [, options] = parameters;
     console.log('Button::position', this.position);
+    const [, options] = parameters;
     const { onPressed } = options;
   }
 

@@ -3,7 +3,8 @@ import { UIObject } from '#src/component/uiObject';
 export default class Text extends UIObject {
   constructor(...parameters) {
     super(...parameters);
-    const [, text] = parameters;
+    const [, options] = parameters;
+    const { text } = options;
     this.text = text;
     console.log('Text::text', text);
   }
@@ -11,6 +12,7 @@ export default class Text extends UIObject {
   add() {
     this.kaboom.add([
       this.kaboom.text(this.text),
+      this.kaboom.pos(this.position?.x || 0, this.position?.y || 0),
     ]);
     return this;
   }
