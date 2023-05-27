@@ -1,11 +1,17 @@
 import { Button } from '#src/component/button/button';
-import { Text } from '#src/component/text/text';
 
 export default class TextButton extends Button {
-  constructor(...parameters) {
-    super(...parameters);
-    const [, options] = parameters;
-    console.log('TextButton::parameters', parameters);
+  constructor(parameters) {
+    super(parameters);
+    this.id = `textButton-${this.uid}`;
+    this.text = parameters.text;
+    this.text.setPosition(this.position);
+  }
+
+  add() {
+    super.add();
+    this.text.add();
+    return this;
   }
 }
 

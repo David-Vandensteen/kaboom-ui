@@ -1,13 +1,11 @@
 import { KaboomSingleton } from '#src/lib/kaboomSingleton';
+import { uid } from 'uid';
 
 export default class UI {
-  constructor(...parameters) {
-    console.log('UI::parameters', parameters);
-    const [keyName] = parameters;
-    console.log('UI::keyName', keyName);
-    if (!keyName) throw new Error('UI::KeyName is not provided');
-    this.keyName = keyName;
+  constructor(parameters) {
+    this.uid = uid();
     this.kaboom = KaboomSingleton.getInstance();
+    this.parameters = parameters;
   }
 
   display() {

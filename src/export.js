@@ -3,6 +3,7 @@ import { UIScene } from '#src/component/uiScene';
 import { Button } from '#src/component/button/button';
 import { TextButton } from '#src/component/button/textButton';
 import { Text } from '#src/component/text/text';
+import { Position } from '#src/lib/position';
 
 export {
   UIService,
@@ -10,4 +11,5 @@ export {
   Button,
   TextButton,
   Text,
+  Position,
 };

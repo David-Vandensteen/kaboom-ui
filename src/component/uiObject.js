@@ -1,15 +1,16 @@
 import { UI } from '#src/component/ui';
+import { Position } from '#src/export';
 
 export default class UIObject extends UI {
-  constructor(...parameters) {
-    super(...parameters);
-    console.log('UIObject::parameters', parameters);
-    this.position = { x: 0, y: 0 };
-    const [, options] = parameters;
-    if (options?.position) this.position = options.position;
+  constructor(parameters) {
+    super(parameters);
+    this.position = new Position({ x: 0, y: 0 });
+    if (parameters?.position) this.position = parameters.position;
+  }
 
-    console.log('UIObject::position', this.position);
-    console.log('UIObject::position.x', this.position.x);
+  setPosition(position) {
+    this.position = position;
+    return this;
   }
 }
 

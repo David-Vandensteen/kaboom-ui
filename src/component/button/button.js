@@ -2,16 +2,14 @@ import { UIObject } from '#src/component/uiObject';
 import { buttonSprite } from '#src/config';
 
 export default class Button extends UIObject {
-  constructor(...parameters) {
-    super(...parameters);
-    console.log('Button::parameters', parameters);
-    console.log('Button::position', this.position);
-    const [, options] = parameters;
-    const { onPressed } = options;
+  constructor(parameters) {
+    super(parameters);
+    this.id = `button-${this.uid}`;
+    const { onPressed } = parameters;
   }
 
   load() {
-    this.kaboom.loadSprite(this.keyName, buttonSprite);
+    this.kaboom.loadSprite(this.id, buttonSprite);
     return this;
   }
 
@@ -20,11 +18,9 @@ export default class Button extends UIObject {
   }
 
   add() {
-    console.log('Button::position', this.position);
-    console.log('Button::position.x', this.position.x);
     this.kaboom.add([
-      this.kaboom.pos(this.position?.x || 0, this.position?.y || 0),
-      this.kaboom.sprite(this.keyName),
+      this.kaboom.pos(this.position.x, this.position.y),
+      this.kaboom.sprite(this.id),
     ]);
     return this;
   }

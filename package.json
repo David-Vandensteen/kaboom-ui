@@ -5,18 +5,19 @@
   "main": "src/main.js",
   "type": "module",
   "imports": {
-		"#src/*": "./src/*.js"
-	},
-	"scripts": {
-		"build": "esbuild --bundle src/main.js --outfile=www/main.js --minify",
-		"dev": "esbuild --bundle src/main.js --outfile=www/main.js --servedir=www",
-		"lint": "eslint src/",
-		"zip": "npm run build && mkdir -p dist && zip -r dist/game.zip www -x \"**/.DS_Store\""
+    "#src/*": "./src/*.js"
+  },
+  "scripts": {
+    "build": "esbuild --bundle src/main.js --outfile=www/main.js --minify",
+    "dev": "esbuild --bundle src/main.js --outfile=www/main.js --servedir=www",
+    "lint": "eslint src/",
+    "zip": "npm run build && mkdir -p dist && zip -r dist/game.zip www -x \"**/.DS_Store\""
   },
   "author": "David Vandensteen <dvandensteen@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "kaboom": "^2000.2.10"
+    "kaboom": "^2000.2.10",
+    "uid": "^2.0.2"
   },
   "devDependencies": {
     "esbuild": "^0.17.19",
