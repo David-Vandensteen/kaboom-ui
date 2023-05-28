@@ -1,5 +1,5 @@
 import { UI } from '#src/component/ui';
-import { Position } from '#src/export';
+import { Position } from '#src/lib/position';
 
 export default class UIObject extends UI {
   constructor(parameters) {
