@@ -2,16 +2,17 @@ import { KaboomSingleton } from '#src/lib/kaboomSingleton';
 import { uid } from 'uid';
 
 export default class UI {
-  constructor(parameters) {
+  constructor(options) {
     this.uid = uid();
     this.kaboom = KaboomSingleton.getInstance();
-    this.parameters = parameters;
+    this.options = options;
   }
 
   display() {
     if (this.load) this.load();
     if (this.add) this.add();
     if (this.go) this.go();
+    return this;
   }
 }
 

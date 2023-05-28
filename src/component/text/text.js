@@ -8,8 +8,8 @@ const getKaboomOptions = (parameters) => {
 };
 
 export default class Text extends UIObject {
-  constructor(text, parameters) {
-    super(parameters);
+  constructor(text, options) {
+    super(options);
     this.id = `text-${this.uid}`;
     this.text = text;
   }
@@ -17,7 +17,7 @@ export default class Text extends UIObject {
   add() {
     this.kaboom.add([
       this.kaboom.pos(this.position.x, this.position.y),
-      this.kaboom.text(this.text, getKaboomOptions(this?.parameters)),
+      this.kaboom.text(this.text, getKaboomOptions(this?.options)),
     ]);
     return this;
   }

@@ -1,11 +1,10 @@
 import { UI } from '#src/component/ui';
-import { Position } from '#src/lib/position';
 
 export default class UIObject extends UI {
-  constructor(parameters) {
-    super(parameters);
-    this.position = new Position({ x: 0, y: 0 });
-    if (parameters?.position) this.position = parameters.position;
+  constructor(options) {
+    super(options);
+    this.position = { x: 0, y: 0 };
+    if (options?.position) this.position = options.position;
   }
 
   setPosition(position) {
