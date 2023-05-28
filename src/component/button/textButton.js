@@ -2,9 +2,12 @@ import { Button } from '#src/component/button/button';
 import { Text } from '#src/component/text/text';
 
 export default class TextButton extends Button {
-  constructor(text, options, textOptions = {}) {
+  constructor(text, options) {
     super(options);
     this.id = `textButton-${this.uid}`;
+
+    let textOptions = {};
+    if (options?.text) textOptions = options.text;
 
     this.text = new Text(text, {
       size: 22,

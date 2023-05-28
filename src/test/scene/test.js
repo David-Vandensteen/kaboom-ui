@@ -17,8 +17,9 @@ export default class TestScene extends UIScene {
 
     this.textButton2 = new TextButton('Text button 2', {
       position: { x: 130, y: 130 },
-    }, {
-      size: 100,
+      text: {
+        size: 100,
+      },
     }).display();
 
     this.text = new Text('Text::Hello', {
