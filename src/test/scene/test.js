@@ -8,24 +8,13 @@ import {
 export default class TestScene extends UIScene {
   display() {
     this.button = new Button({
-      position: { x: 120, y: 120 },
-      onPressed: 'hello button',
+      onHover: () => { console.log('onHover'); },
+      onHoverEnd: () => { console.log('onHoverEnd'); },
+      onClick: () => { console.log('onClick'); },
     })
       .display();
 
-    this.textButton = new TextButton('Hello text button').display();
-
-    this.textButton2 = new TextButton('Text button 2', {
-      position: { x: 130, y: 130 },
-      text: {
-        size: 100,
-      },
-    }).display();
-
-    this.text = new Text('Text::Hello', {
-      position: { x: 150, y: 600 },
-    })
-      .display();
+    console.log(this.button.component);
 
     return this;
   }

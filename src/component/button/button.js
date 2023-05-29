@@ -12,17 +12,13 @@ export default class Button extends UIObject {
     return this;
   }
 
-  /*
-  #eventRegister() {
-    // TODO
-  }
-  */
-
+  // override
   add() {
-    this.kaboom.add([
-      this.kaboom.pos(this.position.x, this.position.y),
+    super.add([
       this.kaboom.sprite(this.id),
     ]);
+
+    console.log(this.component);
     return this;
   }
 }
