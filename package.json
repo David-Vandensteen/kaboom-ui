@@ -16,7 +16,9 @@
   "author": "David Vandensteen <dvandensteen@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "eventemitter3": "^5.0.1",
     "kaboom": "^2000.2.10",
+    "lodash": "^4.17.21",
     "uid": "^2.0.2"
   },
   "devDependencies": {

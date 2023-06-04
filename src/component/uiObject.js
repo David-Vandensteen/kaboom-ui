@@ -1,15 +1,14 @@
 import { UI } from '#src/component/ui';
-import { Store } from '#src/lib/store';
+import { store } from '#src/lib/store';
 
 export default class UIObject extends UI {
   constructor(options) {
     super(options);
-    this.store = new Store();
-    this.store.state = {
+    store.state = {
       hover: false,
     };
-    this.store.position = { x: 0, y: 0 }; // TODO : set
-    if (options?.position) this.store.position = options.position; // TODO : get
+    store.position = { x: 0, y: 0 }; // TODO : set
+    if (options?.position) store.position = options.position; // TODO : get
   }
 
   #eventRegister() {
@@ -27,13 +26,14 @@ export default class UIObject extends UI {
 
     this.component.onUpdate(() => {
       // console.log(this.store.get('state'));
-      const state = this.store.get('state') || { hover: null };
+      // console.log(this.store);
+      const state = store.get('state') || { hover: null };
 
       if (this.component.isHovering() && state.hover === false) onHover();
       if (!this.component.isHovering() && state.hover === true) onHoverEnd();
 
-      if (this.component.isHovering()) this.store.set('state', { hover: true });
-      if (!this.component.isHovering()) this.store.set('state', { hover: false });
+      if (this.component.isHovering()) store.set('state', { hover: true });
+      if (!this.component.isHovering()) store.set('state', { hover: false });
     });
 
     return this;
@@ -41,7 +41,7 @@ export default class UIObject extends UI {
 
   add(options) {
     this.component = this.kaboom.add([
-      this.kaboom.pos(this.store.position.x, this.store.position.y),
+      this.kaboom.pos(store.position.x, store.position.y),
       this.kaboom.area(),
       ...options,
     ]);
