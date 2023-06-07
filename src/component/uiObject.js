@@ -7,8 +7,7 @@ export default class UIObject extends UI {
     store.state = {
       hover: false,
     };
-    store.position = { x: 0, y: 0 }; // TODO : set
-    if (options?.position) store.position = options.position; // TODO : get
+    store.set('position', options?.position || { x: 0, y: 0 });
   }
 
   #eventRegister() {
@@ -25,15 +24,17 @@ export default class UIObject extends UI {
     });
 
     this.component.onUpdate(() => {
-      // console.log(this.store.get('state'));
-      // console.log(this.store);
-      const state = store.get('state') || { hover: null };
+      const isHovering = this.component.isHovering();
+      const previousState = store.get('state') || { hover: null };
 
-      if (this.component.isHovering() && state.hover === false) onHover();
-      if (!this.component.isHovering() && state.hover === true) onHoverEnd();
+      if (isHovering && previousState.hover === false) {
+        onHover();
+      }
+      if (!isHovering && previousState.hover === true) {
+        onHoverEnd();
+      }
 
-      if (this.component.isHovering()) store.set('state', { hover: true });
-      if (!this.component.isHovering()) store.set('state', { hover: false });
+      store.set('state', { hover: isHovering });
     });
 
     return this;
@@ -41,7 +42,7 @@ export default class UIObject extends UI {
 
   add(options) {
     this.component = this.kaboom.add([
-      this.kaboom.pos(store.position.x, store.position.y),
+      this.kaboom.pos(store.get('position').x, store.get('position').y),
       this.kaboom.area(),
       ...options,
     ]);
@@ -50,7 +51,7 @@ export default class UIObject extends UI {
   }
 
   setPosition(position) {
-    this.store.position = position;
+    store.set('position', position);
     return this;
   }
 }
