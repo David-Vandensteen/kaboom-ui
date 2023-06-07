@@ -4,10 +4,12 @@ import { storeService as store } from '#src/service/store';
 export default class UIObject extends UI {
   constructor(options) {
     super(options);
-    store.state = {
-      hover: false,
-    };
+    console.log('UIObject options', options);
+    this.id = `${options.componentType}-${this.uid}`;
+
+    store.register(this.id);
     store.set('position', options?.position || { x: 0, y: 0 });
+    console.log('instance :', this instanceof UIObject);
   }
 
   #eventRegister() {
@@ -16,6 +18,7 @@ export default class UIObject extends UI {
     };
 
     const onHoverEnd = () => {
+      console.log('store :', store);
       console.log('onHoverEnd');
     };
 
