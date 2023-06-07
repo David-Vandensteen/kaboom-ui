@@ -1,5 +1,5 @@
 import { UI } from '#src/component/ui';
-import { store } from '#src/lib/store';
+import { storeService as store } from '#src/service/store';
 
 export default class UIObject extends UI {
   constructor(options) {
