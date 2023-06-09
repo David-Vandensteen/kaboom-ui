@@ -7,45 +7,53 @@ export default class UIObject extends UI {
     console.log('UIObject options', options);
     this.id = `${options.componentType}-${this.uid}`;
 
-    store.register(this.id);
-    store.set('position', options?.position || { x: 0, y: 0 });
+    store.set(
+      'position',
+      options?.position || { x: 0, y: 0 },
+      { nameSpace: this.id },
+    );
+
     console.log('instance :', this instanceof UIObject);
   }
 
   #eventRegister() {
     const onHover = () => {
       console.log('onHover');
+      this.emit('onHover', true);
     };
 
     const onHoverEnd = () => {
-      console.log('store :', store);
       console.log('onHoverEnd');
+      this.emit('onHoverEnd', true);
     };
 
     this.component.onClick(() => {
       console.log('onClick');
+      this.emit('onClick', true);
+      console.log(store);
     });
 
     this.component.onUpdate(() => {
       const isHovering = this.component.isHovering();
-      const previousState = store.get('state') || { hover: null };
+      const previousState = store.get('hover', { nameSpace: this.id });
+      store.set('hover', isHovering, { nameSpace: this.id });
 
-      if (isHovering && previousState.hover === false) {
+      if (isHovering && previousState === false) {
         onHover();
       }
-      if (!isHovering && previousState.hover === true) {
+
+      if (!isHovering && previousState === true) {
         onHoverEnd();
       }
-
-      store.set('state', { hover: isHovering });
     });
 
     return this;
   }
 
   add(options) {
+    const { x, y } = this.getPosition();
     this.component = this.kaboom.add([
-      this.kaboom.pos(store.get('position').x, store.get('position').y),
+      this.kaboom.pos(x, y),
       this.kaboom.area(),
       ...options,
     ]);
@@ -53,8 +61,12 @@ export default class UIObject extends UI {
     return this;
   }
 
+  getPosition() {
+    return store.get('position', { nameSpace: this.id });
+  }
+
   setPosition(position) {
-    store.set('position', position);
+    store.set('position', position, { nameSpace: this.id });
     return this;
   }
 }

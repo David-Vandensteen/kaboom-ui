@@ -1,8 +1,10 @@
+import EventEmitter from 'eventemitter3';
 import { KaboomSingleton } from '#src/lib/kaboomSingleton';
 import { uid } from 'uid';
 
-export default class UI {
+export default class UI extends EventEmitter {
   constructor(options) {
+    super();
     this.uid = uid();
     this.kaboom = KaboomSingleton.getInstance();
     this.options = options;

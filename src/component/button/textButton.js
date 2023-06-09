@@ -3,8 +3,7 @@ import { Text } from '#src/component/text/text';
 
 export default class TextButton extends Button {
   constructor(text, options) {
-    super(options);
-    this.id = `textButton-${this.uid}`;
+    super({ ...options, ...{ componentType: 'textButton' } });
 
     let textOptions = {};
     if (options?.text) textOptions = options.text;
@@ -13,8 +12,8 @@ export default class TextButton extends Button {
       size: 22,
       ...textOptions,
     });
-
-    this.text.setPosition({ x: this.position.x + 10, y: this.position.y + 10 });
+    const { x, y } = this.getPosition();
+    this.text.setPosition({ x: x + 10, y: y + 10 });
   }
 
   add() {

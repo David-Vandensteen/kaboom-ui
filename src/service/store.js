@@ -1,24 +1,7 @@
-import EventEmitter from 'eventemitter3';
-// import mixin from '#src/lib/mixin';
+import { Store } from '#src/lib/store';
+// import mixin from '#src/lib/mixin'; // TODO remove mixin and lodash module
 
-class StoreService extends EventEmitter {
-  register(componentId) {
-    this.id = componentId;
-    this[componentId] = {};
-  }
-
-  get(location) {
-    return this[this.id][location];
-  }
-
-  set(location, value) {
-    this[this.id][location] = value;
-    return this;
-  }
-}
-
-// const storeService = mixin(new StoreService(), new Map());
-const storeService = new StoreService();
+const storeService = new Store();
 
 export default storeService;
 export { storeService };

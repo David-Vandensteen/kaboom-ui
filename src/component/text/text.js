@@ -9,14 +9,14 @@ const getKaboomOptions = (parameters) => {
 
 export default class Text extends UIObject {
   constructor(text, options) {
-    super(options);
-    this.id = `text-${this.uid}`;
+    super({ ...options, ...{ componentType: 'text' } });
     this.text = text;
   }
 
   add() {
+    const { x, y } = this.getPosition();
     this.kaboom.add([
-      this.kaboom.pos(this.position.x, this.position.y),
+      this.kaboom.pos(x, y),
       this.kaboom.text(this.text, getKaboomOptions(this?.options)),
     ]);
     return this;

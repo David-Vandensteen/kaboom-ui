@@ -3,7 +3,10 @@ import { buttonSprite } from '#src/config';
 
 export default class Button extends UIObject {
   constructor(options) {
-    super({ ...options, ...{ componentType: 'button' } });
+    super({
+      ...options,
+      ...{ componentType: options?.componentType || 'button' },
+    });
   }
 
   load() {

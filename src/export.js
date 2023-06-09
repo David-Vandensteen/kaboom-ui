@@ -4,6 +4,7 @@ import { UIScene } from '#src/component/uiScene';
 import { Button } from '#src/component/button/button';
 import { TextButton } from '#src/component/button/textButton';
 import { Text } from '#src/component/text/text';
+import { storeService } from '#src/service/store';
 
 export {
   KaboomSingleton,
@@ -12,4 +13,5 @@ export {
   Button,
   TextButton,
   Text,
+  storeService,
 };

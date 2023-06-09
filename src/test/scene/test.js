@@ -3,6 +3,7 @@ import {
   Button,
   TextButton,
   Text,
+  storeService,
 } from '#src/export';
 
 export default class TestScene extends UIScene {
@@ -15,8 +16,10 @@ export default class TestScene extends UIScene {
     })
       .display();
 
-    console.log(this.button.component);
+    this.textButton = new TextButton('Hello', { position: { x: 10, y: 10 } })
+      .display();
 
+    console.log(storeService);
     return this;
   }
 }
