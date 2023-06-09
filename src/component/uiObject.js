@@ -19,11 +19,14 @@ export default class UIObject extends UI {
   eventRegister() {
     const onHover = () => {
       if (this?.options.onHover) this.options.onHover();
+      console.log(this.component);
+      this.component.scale = 1.2;
       this.emit('onHover', true);
     };
 
     const onHoverEnd = () => {
       if (this?.options.onHoverEnd) this.options.onHoverEnd();
+      this.component.scale = 1;
       this.emit('onHoverEnd', true);
     };
 
