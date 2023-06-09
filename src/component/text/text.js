@@ -13,11 +13,13 @@ export default class Text extends UIObject {
     this.text = text;
   }
 
+  // override
   add() {
     const { x, y } = this.getPosition();
-    this.kaboom.add([
+    this.component = this.kaboom.add([
       this.kaboom.pos(x, y),
       this.kaboom.text(this.text, getKaboomOptions(this?.options)),
+      this.kaboom.area(),
     ]);
     return this;
   }

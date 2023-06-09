@@ -13,6 +13,7 @@ export default class UI extends EventEmitter {
   display() {
     if (this.load) this.load();
     if (this.add) this.add();
+    if (this?.component.area && this.eventRegister) this.eventRegister();
     if (this.go) this.go();
     return this;
   }

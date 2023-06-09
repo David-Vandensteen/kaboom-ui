@@ -16,21 +16,20 @@ export default class UIObject extends UI {
     console.log('instance :', this instanceof UIObject);
   }
 
-  #eventRegister() {
+  eventRegister() {
     const onHover = () => {
-      console.log('onHover');
+      if (this?.options.onHover) this.options.onHover();
       this.emit('onHover', true);
     };
 
     const onHoverEnd = () => {
-      console.log('onHoverEnd');
+      if (this?.options.onHoverEnd) this.options.onHoverEnd();
       this.emit('onHoverEnd', true);
     };
 
     this.component.onClick(() => {
-      console.log('onClick');
+      if (this?.options.onClick) this.options.onClick();
       this.emit('onClick', true);
-      console.log(store);
     });
 
     this.component.onUpdate(() => {
@@ -57,7 +56,6 @@ export default class UIObject extends UI {
       this.kaboom.area(),
       ...options,
     ]);
-    this.#eventRegister();
     return this;
   }
 
